@@ -12,26 +12,26 @@ var connection = mysql.createConnection(keys.data);
 
 // Creates the connection with the server and loads the product data upon a successful connection
 connection.connect(function (err) {
-  if (err) {
-    console.error("error connecting: " + err.stack);
-  }
-  console.log("-----------------------------------------------------------");
-  console.log("| WELCOME TO HARRY POTTER'S BAMAZON STORE MANAGER'S VIEW! |");
-  console.log("-----------------------------------------------------------");
+    if (err) {
+        console.error("error connecting: " + err.stack);
+    }
+    console.log("-----------------------------------------------------------");
+    console.log("| WELCOME TO HARRY POTTER'S BAMAZON STORE MANAGER'S VIEW! |");
+    console.log("-----------------------------------------------------------");
 
-  whatDoYouWantToDo();
+    whatDoYouWantToDo();
 });
 
-function whatDoYouWantToDo(){
+function whatDoYouWantToDo() {
     inquirer
         .prompt([{
-                type: "list",
-                message: "what do you want to do?",
-                choices: ["View Products for Sale", "View Low Inventory", "Add to Inventory", "Add New Product", "quit"],
-                name: "what_to_do"
-            }            
+            type: "list",
+            message: "what do you want to do?",
+            choices: ["View Products for Sale", "View Low Inventory", "Add to Inventory", "Add New Product", "quit"],
+            name: "what_to_do"
+        }
         ])
-        .then(function(resp) {
+        .then(function (resp) {
             switch (resp.what_to_do) {
                 case "View Products for Sale":
                     loadProducts();
@@ -53,26 +53,51 @@ function whatDoYouWantToDo(){
                     loadProducts();
                     break;
             }
-            
+
         });
 }
 
 function loadProducts() {
-  // Selects all of the data from the MySQL products table
-  connection.query("SELECT * FROM products", function (err, res) {
-    if (err) {
-      console.log(err)
-    }
-    // Draw the table in the terminal using the response
-    console.table(res);
-    // Then prompt the customer for their choice of product, pass all the products to promptCustomerForItem
-    whatDoYouWantToDo();
-  });
+    // Selects all of the data from the MySQL products table
+    connection.query("SELECT * FROM products", function (err, res) {
+        if (err) {
+            console.log(err)
+        }
+        // Draw the table in the terminal using the response
+        console.table(res);
+        // Then prompt the customer for their choice of product, pass all the products to promptCustomerForItem
+        whatDoYouWantToDo();
+    });
 };
 
-function viewLowInventory(){
-    connection.query("SELECT * FROM products WHERE stock_quantity < 5", function (err, res, fields){
+function viewLowInventory() {
+    connection.query("SELECT * FROM products WHERE stock_quantity < 5", function (err, res, fields) {
         console.table(res);
         whatDoYouWantToDo();
     })
 };
+
+function addInventory(count, iid) {
+    connection.query("UPDATE products SET stock_quantity = stock_quantity + ? WHERE item_id = ?", [count, iid], function (err, res, field) {
+        console.log("Success!");
+        whatDoYouWantToDo();
+    })
+}
+function promptAddInventory() {
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                message: "Please write ID number of item",
+                name: "itemId"
+            },
+            {
+                type: "input",
+                message: "How many items do you want to add?",
+                name: "count"
+            }
+        ]).then(answers => {
+            addInventory(answers.count, answers.itemId);
+        })
+}
+
