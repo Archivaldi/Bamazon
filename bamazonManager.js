@@ -111,12 +111,12 @@ function promtAddItem(){
             },
             {
                 type: "input",
-                message: "What department controls this product?",
+                message: "Please write ID of department that will control this item?",
                 name: "departmentName"
             },
             {
                 type: "input",
-                message: "What;s the quantity?",
+                message: "What's the quantity?",
                 name: "quantity"
             },
             {
@@ -130,7 +130,7 @@ function promtAddItem(){
 };
 
 function addItem(name, department, quantity, price){
-    connection.query("INSERT INTO products(product_name, department_name, price, stock_quantity) VALUES (?, ?, ?, ?)", [name, department, quantity, price], function(err, res, field){
+    connection.query("INSERT INTO products(product_name, department_id, price, stock_quantity) VALUES (?, ?, ?, ?)", [name, department, price, quantity], function(err, res, field){
         console.log("Success!");
         whatDoYouWantToDo();
     })

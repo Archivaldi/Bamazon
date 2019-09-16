@@ -58,5 +58,27 @@ function productSales() {
 };
 
 function promptNewDep() {
-    console.log("ill be the new function");
-}
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                message: "What's the name of departments?",
+                name: "name"
+            },
+            {
+                type: "input",
+                message: "What's the overhead cost?",
+                name: "cost"
+            }
+        ])
+        .then(answers => {
+            addDepartment(answers.name, answers.cost);
+        });
+};
+
+function addDepartment(name, cost){
+    connection.query("INSERT INTO departments (department_name, over_head_costs) VALUES (?, ?)", [name, cost], function (err, res){
+        console.log("Success! " + name + " department created with overhead cost: $" + cost);
+        whatDoYouWantToDo();
+    });
+};

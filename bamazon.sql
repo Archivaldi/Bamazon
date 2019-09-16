@@ -5,7 +5,7 @@ USE bamazon;
 CREATE TABLE departments (
     department_id INT NOT NULL AUTO_INCREMENT,
     department_name VARCHAR(255),
-    over_head_costs INT,
+    over_head_costs INT NOT NULL,
     PRIMARY KEY (department_id)
 );
 
@@ -13,9 +13,9 @@ CREATE TABLE departments (
 CREATE TABLE products (
     item_id INT NOT NULL AUTO_INCREMENT,
     product_name VARCHAR(255),
-    price DECIMAL(5,2) NOT NULL,
-    stock_quantity INT NOT NULL,
-    product_sales INT,
+    price DECIMAL(7,2) NOT NULL,
+    stock_quantity INT NOT NULL DEFAULT 0,
+    product_sales INT NOT NULL DEFAULT 0,
     department_id INT NOT NULL,
     FOREIGN KEY (department_id) REFERENCES departments(department_id),
     PRIMARY KEY (item_id)
