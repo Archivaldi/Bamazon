@@ -23,7 +23,7 @@ connection.connect(function (err) {
 });
 function loadProducts() {
   // Selects all of the data from the MySQL products table
-  connection.query("SELECT * FROM products", function (err, res) {
+  connection.query("SELECT item_id AS ID, Product_name AS Product, department_name AS Department, price AS Price, stock_quantity AS Quantity FROM products", function (err, res) {
     if (err) {
       console.log(err)
     }
@@ -38,13 +38,19 @@ function loadProducts() {
       loadProducts();
       promptUser();
 
+    });
+  };
+
+  function updateSales(count, iid){
+    connection.query("UPDATE products SET product_sales = price * ? WHERE item_id = ?", [count, iid], function (err, res, fields){
     })
-  }
+  };
 
   function checkQuantity(count, iid) {
     connection.query("SELECT * FROM products WHERE item_id = ?", [iid], function (err, res, fields) {
 
       if (parseInt(res[0].stock_quantity) >= count) {
+        updateSales(count, iid);
         console.log("-----------------------------------------------------------");
         console.log("Success! You bougth " + count + " " + res[0].product_name + "'s. " + "The total is $" +  count * res[0].price);
         console.log("-----------------------------------------------------------");
