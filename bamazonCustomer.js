@@ -23,7 +23,7 @@ connection.connect(function (err) {
 });
 function loadProducts() {
   // Selects all of the data from the MySQL products table
-  connection.query("SELECT item_id AS ID, Product_name AS Product, department_name AS Department, price AS Price, stock_quantity AS Quantity FROM products", function (err, res) {
+  connection.query("SELECT item_id AS ID, Product_name AS Product, price AS Price, stock_quantity AS Quantity FROM products", function (err, res) {
     if (err) {
       console.log(err)
     }
