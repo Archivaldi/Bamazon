@@ -42,7 +42,7 @@ function whatDoYouWantToDo() {
                     promptAddInventory();
                     break;
                 case "Add New Product":
-                    addNewProduct();
+                    promtAddItem();
                     break;
                 case "quit":
                     console.log('Thank you! Have a nice day!');
@@ -101,3 +101,37 @@ function promptAddInventory() {
         })
 }
 
+function promtAddItem(){
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                message: "What's name of the product?",
+                name: "itemName"
+            },
+            {
+                type: "input",
+                message: "What department controls this product?",
+                name: "departmentName"
+            },
+            {
+                type: "input",
+                message: "What;s the quantity?",
+                name: "quantity"
+            },
+            {
+                type: "input",
+                message: "How much is this product?",
+                name: "price"
+            }
+        ]).then(answers => {
+            addItem(answers.itemName, answers.departmentName, answers.quantity, answers.price);
+        })
+};
+
+function addItem(name, department, quantity, price){
+    connection.query("INSERT INTO products(product_name, department_name, price, stock_quantity) VALUES (?, ?, ?, ?)", [name, department, quantity, price], function(err, res, field){
+        console.log("Success!");
+        whatDoYouWantToDo();
+    })
+}
