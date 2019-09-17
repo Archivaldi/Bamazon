@@ -19,11 +19,11 @@ connection.connect(function (err) {
   console.log("| WELCOME TO HARRY POTTER'S BAMAZON STORE! |");
   console.log("--------------------------------------------");
 
-  loadProducts();
+  promptUserEntry();
 });
 function loadProducts() {
   // Selects all of the data from the MySQL products table
-  connection.query("SELECT item_id AS ID, Product_name AS Product, price AS Price, stock_quantity AS Quantity FROM products", function (err, res) {
+  connection.query("SELECT item_id AS ID, product_name AS Product, price AS Price, stock_quantity AS Quantity, department_name, products.department_id FROM (products) LEFT JOIN departments USING (department_id)", function (err, res) {
     if (err) {
       console.log(err)
     }
@@ -35,8 +35,7 @@ function loadProducts() {
 
   function updateQuantity(count, iid) {
     connection.query("UPDATE products SET stock_quantity = stock_quantity - ? WHERE item_id = ?", [count, iid], function (err, res, field) {
-      loadProducts();
-      promptUser();
+      promptUserEntry();
 
     });
   };
@@ -57,8 +56,7 @@ function loadProducts() {
         updateQuantity(count, iid);
       } else {
         console.log("Insufficient quantity");
-        loadProducts();
-        promptUser();
+        promptUserEntry();
       }
     })
   }
@@ -82,4 +80,25 @@ function loadProducts() {
         checkQuantity(answers.count, answers.ID);
       });
   }
+}
+
+function promptUserEntry(){
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        message: "What do you want to do?",
+        choices: ["Buy a product", "quit"],
+        name: "what_to_do"
+      }
+    ]).then(resp => {
+      switch (resp.what_to_do){
+        case "Buy a product":
+            loadProducts();
+            break;
+        case "quit":
+          console.log("Thank you! Have a nice day!");
+          connection.end();
+      }
+    })
 }

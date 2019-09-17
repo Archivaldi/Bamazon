@@ -49,7 +49,6 @@ function whatDoYouWantToDo() {
                     connection.end();
                     break;
                 default:
-                    // code block
                     loadProducts();
                     break;
             }
@@ -59,13 +58,9 @@ function whatDoYouWantToDo() {
 
 function loadProducts() {
     // Selects all of the data from the MySQL products table
-    connection.query("SELECT * FROM products", function (err, res) {
-        if (err) {
-            console.log(err)
-        }
+    connection.query("SELECT * FROM products", function (err, res, fields) {
         // Draw the table in the terminal using the response
         console.table(res);
-        // Then prompt the customer for their choice of product, pass all the products to promptCustomerForItem
         whatDoYouWantToDo();
     });
 };
