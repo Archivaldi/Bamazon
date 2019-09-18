@@ -74,6 +74,8 @@ When you run bamazonSupervisor.js file, as a supervisor, you will be prompted fo
 `View Products Sales by Department`
 `Create a New Department`
 
+![screenshot](/screenshots/s1.JPG)
+
 1. `View Products Sales by Department` feature will create a table with following data: 
 
     * Department ID
@@ -81,6 +83,8 @@ When you run bamazonSupervisor.js file, as a supervisor, you will be prompted fo
     * over_head_cost (How much money were spent for products of each department)
     * Total Profit (product_sales - over_head_cost). If number is more than 0, it means that this department makes profit, If less than 0 - not yet.
     * Product Sales
+
+![screenshot](/screenshots/s2.JPG)
 
 2. `Create a new department` feature will prompt user for two questions about new department, such as name and over_head_cost.
 
@@ -90,4 +94,8 @@ All three Modes have shared database. It means that if customer will buy some pr
 * Product sales in manager and supervisor modes
 * Total profit in supervisor mode
 
+![screenshot](/screenshots/s3.JPG)
+
 __REMEMBER__ If you would like to create a new department and new product under this department, you should create the department first. Because if you will write not exist Department ID, product will not be created.
+
+![screenshot](/screenshots/s4.JPG)
