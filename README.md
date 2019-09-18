@@ -13,6 +13,8 @@ When you run bamazonCustomer.js file, as a customer, you will be prompted if you
  * Departments names,
  * Departments ID
 
+ ![screenshot](/screenshots/1.JPG)
+
  After that, user will be asked for two questions: 
 
  * ID of a product, that user wants to buy 
