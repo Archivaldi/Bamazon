@@ -4,7 +4,12 @@ Bamazon-node-app is Amazon-like app, created with JavaScript, Node.js and MySQL 
 
 **Customer Mode**
 
-When you run bamazonCustomer.js file, as a customer, you will be prompted if you want to buy a product. If you do, you will see a table with:
+When you run bamazonCustomer.js file, as a customer, you will be prompted if you want to buy a product. 
+
+
+ ![screenshot](/screenshots/start.JPG)
+
+If you do, you will see a table with:
 
  * a list of products, 
  * products id, 
@@ -38,6 +43,8 @@ When you run bamazonManager.js file, as a manager, you will be prompted followin
 * `Add to Inventory`,
 * `Add New Product`
 
+![screenshot](/screenshots/manstart.JPG)
+
 1. `View Products for Sale` feature will create a table with following data: 
     * Item ID
     * Product name
@@ -46,9 +53,19 @@ When you run bamazonManager.js file, as a manager, you will be prompted followin
     * Product Sales
     * Department ID
 
+![screenshot](/screenshots/m1.JPG)
+
 2. `View Low Inventory` feature will create a table with data about products with quantity less than 5
+
+![screenshot](/screenshots/m2.JPG)
+
 3. `Add to Inventory` feature will promt user for Product ID and how many products user wants to add. After that quantity of this product will be updated in database.
+
+![screenshot](/screenshots/m3.JPG)
+
 4. `Add New Product` feature will prompt user for a few questions about new product, such as name, price, quantity and department ID. User will see the results by using `View Products for Sale` feature.
+
+![screenshot](/screenshots/m4.JPG)
 
 **Supervisor Mode**
 
