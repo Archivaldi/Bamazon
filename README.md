@@ -21,7 +21,13 @@ When you run bamazonCustomer.js file, as a customer, you will be prompted if you
  * How many products user wants to buy
 
  If user will input more quantity than store has, user will get a message "Insufficient quantity".
+
+  ![screenshot](/screenshots/2.JPG)
+
+
  If user input correct numbers, the purchase will be proceed and quantity will be updated.
+
+ ![screenshot](/screenshots/3.JPG)
 
  **Manager Mode**
 
