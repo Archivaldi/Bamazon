@@ -43,7 +43,7 @@ function loadProducts() {
 
     //Updating sales of a product in database after processing the purchase
   function updateSales(count, iid){
-    connection.query("UPDATE products SET product_sales = price * ? WHERE item_id = ?", [count, iid], function (err, res, fields){
+    connection.query("UPDATE products SET product_sales = product_sales +  price * ? WHERE item_id = ?", [count, iid], function (err, res, fields){
     })
   };
 
@@ -51,7 +51,7 @@ function loadProducts() {
   function checkQuantity(count, iid) {
     connection.query("SELECT * FROM products WHERE item_id = ?", [iid], function (err, res, fields) {
 
-      if (parseInt(res[0].stock_quantity) >= count) {
+      if (res[0].stock_quantity >= count) {
         updateSales(count, iid);
         console.log("-----------------------------------------------------------");
         console.log("Success! You bougth " + count + " " + res[0].product_name + "'s. " + "The total is $" +  count * res[0].price);
@@ -103,6 +103,7 @@ function promptUserEntry(){
         case "quit":
           console.log("Thank you! Have a nice day!");
           connection.end();
+          break;
       }
     })
 }

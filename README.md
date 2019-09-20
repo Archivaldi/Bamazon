@@ -2,7 +2,7 @@
 
 Bamazon-node-app is Amazon-like app, created with JavaScript, Node.js and MySQL database. The application has 3 modes: Customer mode, Manager mode and Supervisor mode.
 
-**Customer Mode**
+## Customer Mode
 
 When you run bamazonCustomer.js file, as a customer, you will be prompted if you want to buy a product. 
 
@@ -34,7 +34,7 @@ If you do, you will see a table with:
 
  ![screenshot](/screenshots/3.JPG)
 
- **Manager Mode**
+ ## Manager Mode
 
 When you run bamazonManager.js file, as a manager, you will be prompted following options:
 
@@ -67,7 +67,7 @@ When you run bamazonManager.js file, as a manager, you will be prompted followin
 
 ![screenshot](/screenshots/m4.JPG)
 
-**Supervisor Mode**
+## Supervisor Mode
 
 When you run bamazonSupervisor.js file, as a supervisor, you will be prompted following options:
 
