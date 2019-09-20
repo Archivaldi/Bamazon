@@ -35,6 +35,7 @@ function whatDoYouWantToDo() {
             switch (resp.what_to_do) {
                 case "View Products for Sale":
                     loadProducts();
+                    break;
                 case "View Low Inventory":
                     viewLowInventory();
                     break;
@@ -56,13 +57,14 @@ function whatDoYouWantToDo() {
         });
 }
 
+
 function loadProducts() {
     // Selects all of the data from the MySQL products table
-    connection.query("SELECT * FROM products", function (err, res, fields) {
-        // Draw the table in the terminal using the response
-        console.table(res);
-        whatDoYouWantToDo();
-    });
+        connection.query("SELECT * FROM products", function (err, res, fields) {
+            // Draw the table in the terminal using the response
+            console.table(res);
+            whatDoYouWantToDo();
+        });
 };
 
 function viewLowInventory() {

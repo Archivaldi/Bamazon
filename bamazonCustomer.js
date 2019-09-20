@@ -33,6 +33,7 @@ function loadProducts() {
     promptUser();
   });
 
+    //Updating quantity of a product in database after processing the purchase
   function updateQuantity(count, iid) {
     connection.query("UPDATE products SET stock_quantity = stock_quantity - ? WHERE item_id = ?", [count, iid], function (err, res, field) {
       promptUserEntry();
@@ -40,11 +41,13 @@ function loadProducts() {
     });
   };
 
+    //Updating sales of a product in database after processing the purchase
   function updateSales(count, iid){
     connection.query("UPDATE products SET product_sales = price * ? WHERE item_id = ?", [count, iid], function (err, res, fields){
     })
   };
 
+    //checking the quantity of a product. If customer is buying more products than store has, the purchase will not be proceed
   function checkQuantity(count, iid) {
     connection.query("SELECT * FROM products WHERE item_id = ?", [iid], function (err, res, fields) {
 
@@ -61,7 +64,7 @@ function loadProducts() {
     })
   }
 
-
+  //prompt user what item user wants to buy and how many
   function promptUser() {
     inquirer
       .prompt([
@@ -82,6 +85,7 @@ function loadProducts() {
   }
 }
 
+  //main menu
 function promptUserEntry(){
   inquirer
     .prompt([
