@@ -22,6 +22,7 @@ connection.connect(function (err) {
     whatDoYouWantToDo();
 });
 
+//main menu
 function whatDoYouWantToDo() {
     inquirer
         .prompt([{
@@ -58,6 +59,7 @@ function whatDoYouWantToDo() {
 }
 
 
+//load a table with products
 function loadProducts() {
     // Selects all of the data from the MySQL products table
         connection.query("SELECT * FROM products", function (err, res, fields) {
@@ -67,6 +69,7 @@ function loadProducts() {
         });
 };
 
+//load a teble with products with quantity less than 5 
 function viewLowInventory() {
     connection.query("SELECT * FROM products WHERE stock_quantity < 5", function (err, res, fields) {
         console.table(res);
@@ -74,12 +77,15 @@ function viewLowInventory() {
     })
 };
 
+//manager can add products to database
 function addInventory(count, iid) {
     connection.query("UPDATE products SET stock_quantity = stock_quantity + ? WHERE item_id = ?", [count, iid], function (err, res, field) {
         console.log("Success!");
         whatDoYouWantToDo();
     })
-}
+};
+
+//promt user what product and how many user wants to add
 function promptAddInventory() {
     inquirer
         .prompt([
@@ -98,6 +104,8 @@ function promptAddInventory() {
         })
 }
 
+
+//promt user what's  new product's name, quantity, price amd department
 function promtAddItem(){
     inquirer
         .prompt([
@@ -126,6 +134,7 @@ function promtAddItem(){
         })
 };
 
+//updating product in database
 function addItem(name, department, quantity, price){
     connection.query("INSERT INTO products(product_name, department_id, price, stock_quantity) VALUES (?, ?, ?, ?)", [name, department, price, quantity], function(err, res, field){
         console.log("Success!");

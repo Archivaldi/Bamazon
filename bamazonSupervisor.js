@@ -21,6 +21,7 @@ connection.connect(function (err) {
   whatDoYouWantToDo();
 });
 
+//main menu
 function whatDoYouWantToDo() {
     inquirer
         .prompt([
@@ -35,6 +36,7 @@ function whatDoYouWantToDo() {
             switch (resp.what_to_do) {
                 case "View Product Sales by Department":
                     productSales();
+                    break;
                 case "Create New Department":
                     promptNewDep();
                     break;
@@ -50,6 +52,7 @@ function whatDoYouWantToDo() {
         });
 };
 
+//supervisor can see profit for all products and over_head_cost
 function productSales() {
     connection.query("SELECT department_id, department_name,over_head_costs, SUM(product_sales) - over_head_costs AS total_profit,  SUM(product_sales) AS product_sales FROM departments LEFT JOIN products USING (department_id) GROUP BY department_id, department_name, over_head_costs", function (err, res) {
         console.table(res);
@@ -57,6 +60,7 @@ function productSales() {
     });
 };
 
+//creating new department
 function promptNewDep() {
     inquirer
         .prompt([
@@ -76,6 +80,7 @@ function promptNewDep() {
         });
 };
 
+//updating database with new department
 function addDepartment(name, cost){
     connection.query("INSERT INTO departments (department_name, over_head_costs) VALUES (?, ?)", [name, cost], function (err, res){
         console.log("Success! " + name + " department created with overhead cost: $" + cost);
