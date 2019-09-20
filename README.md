@@ -7,7 +7,7 @@ Bamazon-node-app is Amazon-like app, created with JavaScript, Node.js and MySQL 
 When you run bamazonCustomer.js file, as a customer, you will be prompted if you want to buy a product. 
 
 
- ![screenshot](/screenshots/start.JPG)
+ ![screenshot](/screenshots/CustomerMainMenu.JPG)
 
 If you do, you will see a table with:
 
@@ -18,7 +18,7 @@ If you do, you will see a table with:
  * Departments names,
  * Departments ID
 
- ![screenshot](/screenshots/1.JPG)
+ ![screenshot](/screenshots/CustomerBuyProduct.JPG)
 
  After that, user will be asked for two questions: 
 
@@ -27,12 +27,12 @@ If you do, you will see a table with:
 
  If user will input more quantity than store has, user will get a message "Insufficient quantity".
 
-  ![screenshot](/screenshots/2.JPG)
+  ![screenshot](/screenshots/CustomerInsQuant.JPG)
 
 
  If user input correct numbers, the purchase will be proceed and quantity will be updated.
 
- ![screenshot](/screenshots/3.JPG)
+ ![screenshot](/screenshots/CustomerPurchase.JPG)
 
  ## Manager Mode
 
@@ -43,7 +43,7 @@ When you run bamazonManager.js file, as a manager, you will be prompted followin
 * `Add to Inventory`,
 * `Add New Product`
 
-![screenshot](/screenshots/manstart.JPG)
+![screenshot](/screenshots/ManagerMainMenu.JPG)
 
 1. `View Products for Sale` feature will create a table with following data: 
     * Item ID
@@ -53,19 +53,19 @@ When you run bamazonManager.js file, as a manager, you will be prompted followin
     * Product Sales
     * Department ID
 
-![screenshot](/screenshots/m1.JPG)
+![screenshot](/screenshots/ManagerViewSales.JPG)
 
 2. `View Low Inventory` feature will create a table with data about products with quantity less than 5
 
-![screenshot](/screenshots/m2.JPG)
+![screenshot](/screenshots/ManagerLowInventory.JPG)
 
 3. `Add to Inventory` feature will promt user for Product ID and how many products user wants to add. After that quantity of this product will be updated in database.
 
-![screenshot](/screenshots/m3.JPG)
+![screenshot](/screenshots/ManagerAddInventory.JPG)
 
 4. `Add New Product` feature will prompt user for a few questions about new product, such as name, price, quantity and department ID. User will see the results by using `View Products for Sale` feature.
 
-![screenshot](/screenshots/m4.JPG)
+![screenshot](/screenshots/ManagerAddProduct.JPG)
 
 ## Supervisor Mode
 
@@ -74,7 +74,7 @@ When you run bamazonSupervisor.js file, as a supervisor, you will be prompted fo
 `View Products Sales by Department`
 `Create a New Department`
 
-![screenshot](/screenshots/s1.JPG)
+![screenshot](/screenshots/SuperMainMenu.JPG)
 
 1. `View Products Sales by Department` feature will create a table with following data: 
 
@@ -84,9 +84,16 @@ When you run bamazonSupervisor.js file, as a supervisor, you will be prompted fo
     * Total Profit (product_sales - over_head_cost). If number is more than 0, it means that this department makes profit, If less than 0 - not yet.
     * Product Sales
 
-![screenshot](/screenshots/s2.JPG)
+![screenshot](/screenshots/SuperSalesByDep.JPG)
 
 2. `Create a new department` feature will prompt user for two questions about new department, such as name and over_head_cost.
+
+![screenshot](/screenshots/SuperCreateNewDep.JPG)
+
+
+__REMEMBER__ If you would like to create a new department and new product under this department, you should create the department first. Because if you will write not exist Department ID, product will not be created.
+
+![screenshot](/screenshots/createNewPrWithNewDep.JPG)
 
 All three Modes have shared database. It means that if customer will buy some product, it will update a few columns:
 
@@ -94,8 +101,5 @@ All three Modes have shared database. It means that if customer will buy some pr
 * Product sales in manager and supervisor modes
 * Total profit in supervisor mode
 
-![screenshot](/screenshots/s3.JPG)
-
-__REMEMBER__ If you would like to create a new department and new product under this department, you should create the department first. Because if you will write not exist Department ID, product will not be created.
-
-![screenshot](/screenshots/s4.JPG)
+![screenshot](/screenshots/affectMan.JPG)
+![screenshot](/screenshots/affectSuper.JPG)
